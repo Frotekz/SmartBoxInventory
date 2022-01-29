@@ -1,0 +1,79 @@
+﻿<Window x:Class="SmartInventory.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SmartInventory" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        MinHeight="500"
+        MinWidth="830"
+        Title="MainWindow" Height="500" Width="830">
+    <Grid>
+        <materialDesign:ColorZone
+  Mode="PrimaryMid"
+  Padding="16">
+            <DockPanel>
+                <TextBox Text="Smart Inventory" TextWrapping="NoWrap" TextAlignment="Justify" FontSize="20" FontFamily="Segoe UI Semibold"/>
+                <StackPanel
+      Orientation="Horizontal"
+      materialDesign:RippleAssist.IsCentered="True">
+                    <materialDesign:ColorZone
+        Mode="Standard"
+        Padding="8 4 8 4"
+        CornerRadius="2"
+        Panel.ZIndex="1"
+        Margin="16 0 0 0"
+        materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+              Width="Auto" />
+                                <ColumnDefinition
+              Width="*" />
+                                <ColumnDefinition
+              Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Button
+            Style="{DynamicResource MaterialDesignToolButton}">
+                                <materialDesign:PackIcon
+              Kind="Search"
+              Opacity=".56" />
+                            </Button>
+                            <TextBox
+            Grid.Column="1"
+            Margin="8 0 0 0"
+            materialDesign:HintAssist.Hint="Build a search bar"
+            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+            BorderThickness="0"
+            MinWidth="200"
+            VerticalAlignment="Center" />
+                            <Button
+            Style="{DynamicResource MaterialDesignToolButton}"
+            Grid.Column="2">
+                                <materialDesign:PackIcon
+              Kind="Microphone"
+              Opacity=".56"
+              Margin="8 0 0 0" />
+                            </Button>
+                        </Grid>
+                    </materialDesign:ColorZone>
+                    <Button
+        Style="{DynamicResource MaterialDesignToolForegroundButton}"
+        Margin="8 0 0 0"
+        Panel.ZIndex="0">
+                        <materialDesign:PackIcon
+          Kind="Send" />
+                    </Button>
+                </StackPanel>
+            </DockPanel>
+        </materialDesign:ColorZone>
+        <Button
+            Name="btnInventory"
+            Content="{materialDesign:PackIcon Warehouse, Size=50}"
+            Click="btnInventory_Click"
+            Margin="10,86,590,248"
+            Width="200"
+            Height="100"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+    </Grid>
+</Window>

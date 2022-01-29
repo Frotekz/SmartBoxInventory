@@ -1,0 +1,86 @@
+﻿<Window x:Class="SmartInventory.InvetoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:SmartInventory"
+        mc:Ignorable="d"
+        MinHeight="750"
+        MinWidth="1000"
+        Title="InvetoryWindow" Height="750" Width="1000">
+    <Grid>
+        <DataGrid x:Name="datagrid" Width="513" HorizontalAlignment="Right" Margin="0,58,27,215"/>
+        <Grid>
+            <TextBox
+            Name="txtTitle"
+            Style="{StaticResource MaterialDesignOutlinedTextBox}"
+            Height="50"
+            AcceptsReturn="True"
+            materialDesign:HintAssist.Hint="Title"
+    IsEnabled="{Binding IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" Margin="10,87,578,347" />
+            <TextBox
+            Name="txtCategory"
+            Style="{StaticResource MaterialDesignOutlinedTextBox}"
+            Height="50"
+            AcceptsReturn="True"
+            TextWrapping="Wrap"
+            materialDesign:HintAssist.Hint="Category"
+            IsEnabled="{Binding IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" Margin="10,142,578,292" />
+            <DatePicker
+            Name="prodDate"
+            materialDesign:HintAssist.Hint="Production Date"
+            Style="{StaticResource MaterialDesignOutlinedDatePicker}" Margin="10,-40,578,0"/>
+            <TextBox
+            Name="txtWarranty"
+            Style="{StaticResource MaterialDesignOutlinedTextBox}"
+            Height="50"
+            AcceptsReturn="True"
+            TextWrapping="Wrap"
+            materialDesign:HintAssist.Hint="Warranty"
+            IsEnabled="{Binding IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" Margin="10,277,578,207" />
+            <TextBox
+            Name="txtPrice"
+            Style="{StaticResource MaterialDesignOutlinedTextBox}"
+            Height="50"
+            AcceptsReturn="True"
+            TextWrapping="Wrap"
+            materialDesign:HintAssist.Hint="Price"
+            IsEnabled="{Binding IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" Margin="10,332,578,152" />
+        </Grid>
+        <Grid VerticalAlignment="Bottom">
+            <TextBox
+            Name="txtSearch"
+            Style="{StaticResource MaterialDesignOutlinedTextBox}"
+            Height="50"
+            AcceptsReturn="True"
+            TextWrapping="Wrap"
+            materialDesign:HintAssist.Hint="ID"
+            IsEnabled="{Binding IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" Margin="410,352,410,132" />
+            <Button
+            x:Name="btnUpdate"
+            Click="btnUpdate_Click"
+            Style="{StaticResource MaterialDesignFlatSecondaryDarkBgButton}"
+            ToolTip="MaterialDesignFlatSecondaryDarkBgButton"
+            Content="Update"
+            Width="200"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Margin="45,392,555,10" />
+            <Button
+            x:Name="btnDelete"
+            Click="btnDelete_Click"
+            Style="{StaticResource MaterialDesignFlatSecondaryDarkBgButton}"
+            ToolTip="MaterialDesignFlatSecondaryDarkBgButton"
+            Content="Delete"
+            Width="200"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Margin="300,392,300,10" />
+            <Button
+            x:Name="btnInsert"
+            Click="btnInsert_Click"
+            Style="{StaticResource MaterialDesignFlatSecondaryDarkBgButton}"
+            ToolTip="MaterialDesignFlatSecondaryDarkBgButton"
+            Content="Insert"
+            Width="200"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Margin="573,392,27,10" />
+        </Grid>
+    </Grid>
+</Window>
