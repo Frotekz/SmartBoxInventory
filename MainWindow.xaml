@@ -6,74 +6,49 @@
         xmlns:local="clr-namespace:SmartInventory" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         MinHeight="500"
-        MinWidth="830"
-        Title="MainWindow" Height="500" Width="830">
-    <Grid>
+        MinWidth="855"
+        Title="MainWindow" Height="500" Width="855">
+    <StackPanel>
         <materialDesign:ColorZone
   Mode="PrimaryMid"
   Padding="16">
-            <DockPanel>
-                <TextBox Text="Smart Inventory" TextWrapping="NoWrap" TextAlignment="Justify" FontSize="20" FontFamily="Segoe UI Semibold"/>
-                <StackPanel
-      Orientation="Horizontal"
-      materialDesign:RippleAssist.IsCentered="True">
-                    <materialDesign:ColorZone
-        Mode="Standard"
-        Padding="8 4 8 4"
-        CornerRadius="2"
-        Panel.ZIndex="1"
-        Margin="16 0 0 0"
-        materialDesign:ShadowAssist.ShadowDepth="Depth1">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition
-              Width="Auto" />
-                                <ColumnDefinition
-              Width="*" />
-                                <ColumnDefinition
-              Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Button
-            Style="{DynamicResource MaterialDesignToolButton}">
-                                <materialDesign:PackIcon
-              Kind="Search"
-              Opacity=".56" />
-                            </Button>
-                            <TextBox
-            Grid.Column="1"
-            Margin="8 0 0 0"
-            materialDesign:HintAssist.Hint="Build a search bar"
-            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-            BorderThickness="0"
-            MinWidth="200"
-            VerticalAlignment="Center" />
-                            <Button
-            Style="{DynamicResource MaterialDesignToolButton}"
-            Grid.Column="2">
-                                <materialDesign:PackIcon
-              Kind="Microphone"
-              Opacity=".56"
-              Margin="8 0 0 0" />
-                            </Button>
-                        </Grid>
-                    </materialDesign:ColorZone>
-                    <Button
-        Style="{DynamicResource MaterialDesignToolForegroundButton}"
-        Margin="8 0 0 0"
-        Panel.ZIndex="0">
-                        <materialDesign:PackIcon
-          Kind="Send" />
-                    </Button>
-                </StackPanel>
-            </DockPanel>
+            <StackPanel
+    Orientation="Horizontal">
+                <ToggleButton
+      Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                <TextBlock
+      VerticalAlignment="Center"
+      Margin="16 0 0 0"
+      Text="Smart Box Inventory" FontWeight="Bold" FontSize="18" FontFamily="Global Sans Serif"/>
+
+                <Button x:Name="userInfoButton"
+                    Margin="400,0,0,0"
+  Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+  ToolTip="MaterialDesignFloatingActionDarkButton"
+  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Height="40" Width="40" Background="#FF212121" Click="userInfoButton_Click">
+                    <materialDesign:PackIcon Kind="Account" Height="30" Width="30"/>
+                </Button>
+                <TextBlock x:Name="FullName" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15,0,0,0"/>
+            </StackPanel>
         </materialDesign:ColorZone>
-        <Button
-            Name="btnInventory"
+        <Grid>
+            <Button
+            x:Name="btnInventory"
             Content="{materialDesign:PackIcon Warehouse, Size=50}"
             Click="btnInventory_Click"
-            Margin="10,86,590,248"
+            Margin="10,10,645,324"
             Width="200"
             Height="100"
-            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
-    </Grid>
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" />
+
+            <Button
+            x:Name="btnSupply"
+            Content="{materialDesign:PackIcon AccountGroup, Size=50}"
+            Click="btnSupply_Click"
+            Margin="228,10,427,324"
+            Width="200"
+            Height="100"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" />
+        </Grid>
+    </StackPanel>
 </Window>

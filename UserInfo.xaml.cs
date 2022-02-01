@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -12,25 +9,22 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SmartInventory
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for UserInfo.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class UserInfo : Window
     {
-        public MainWindow()
+        public UserInfo()
         {
             InitializeComponent();
-            fullName();
-
+            getUserInfo();
         }
 
-
-        private void fullName()
+        private void getUserInfo()
         {
             SqlConnection sqlCon = new SqlConnection(@"Data Source=FROTEK;Initial Catalog=LoginDB; Integrated Security=True;");
 
@@ -38,7 +32,7 @@ namespace SmartInventory
             {
                 sqlCon.Open();
 
-                string sql = @" SELECT FullName FROM userTable where UserName=@UserName";
+                string sql = @" SELECT UserName,FullName, Position,Adress,number FROM userTable where UserName=@UserName";
 
                 SqlCommand comm = new SqlCommand(sql, sqlCon);
 
@@ -48,32 +42,22 @@ namespace SmartInventory
                 if (!reader.Read())
                     throw new Exception("Something is very wrong");
 
+                int userName = reader.GetOrdinal("UserName");
                 int fullname = reader.GetOrdinal("FullName");
+                int position = reader.GetOrdinal("Position");
+                int Adress = reader.GetOrdinal("Adress");
+                int number = reader.GetOrdinal("number");
 
-                FullName.Text = reader.GetString(fullname);
+                infoUser.Text = reader.GetString(userName);
+                infoFull.Text = reader.GetString(fullname);
+                infoPosition.Text = reader.GetString(position);
+                infoAdress.Text = reader.GetString(Adress);
+                infoNumber.Text = reader.GetString(number);
             }
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        private void btnInventory_Click(object sender, RoutedEventArgs e)
-        {
-            InvetoryWindow invetoryWindow = new InvetoryWindow();
-            invetoryWindow.Show();
-        }
-
-        private void userInfoButton_Click(object sender, RoutedEventArgs e)
-        {
-            UserInfo userInfo = new UserInfo();
-            userInfo.Show();
-        }
-
-        private void btnSupply_Click(object sender, RoutedEventArgs e)
-        {
-            SupplierWindow supplierWindow = new SupplierWindow();
-            supplierWindow.Show();
         }
     }
 }

@@ -122,6 +122,10 @@ namespace SmartInventory
             {
                 MessageBox.Show("Item not deleted",ex.Message);
             }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Item not deleted", ex.Message);
+            }
             finally
             {
                 con.Close();
